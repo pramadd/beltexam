@@ -1,0 +1,34 @@
+<h1> HI <%= @user.name %> ! </h1><br>
+<a href ="sessions/:id">Logout</a><br><br>
+
+<div>
+<% if flash[:errors] %>
+<% flash[:errors].each {|message| %>
+    <p><%= message %></p>
+<% } %> 
+<% end %>
+</div>
+
+<form action ="/ideas" method ="post">
+    <input type="hidden" name="authenticity_token" value="<% form_authenticity_token %>">
+    <input type ="text" name= "content" placeholder= "write some ideas here!" >
+    <input type = "submit" value="Idea!">
+</form>
+
+
+<% @ideas.each do |idea| %>
+    <a href= "/users/<%= idea.user.id %> "> <%= idea.user.name %> </a> says:
+    <%= idea.content %>
+
+
+<form action ="/likes" method= "post">
+    
+    <input type="hidden" name="authenticity_token" value="<% form_authenticity_token %>">
+    <input type ="submit" value= "like!">
+    <input type ="hidden" value = "<%= idea.id%>" name= "idea_id">
+   
+</form>
+
+
+<a href = "/ideas/<%= idea.id %>"><%=idea.users_liked.count%> people </a> like this!
+<% end %>

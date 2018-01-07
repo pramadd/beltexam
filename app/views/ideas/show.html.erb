@@ -1,0 +1,23 @@
+<a href ="/ideas"> Bright Ideas</a>
+<a href ="sessions/:id">Logout</a><br><br>
+
+<h1><a href = "/users/<%= @idea.user.id %>"><%= @idea.user.name %></a> says: <%= @idea.content %></h1>
+
+<p> People who liked this posy:</p>
+
+<table>
+<tr>
+<th>Alias</th>
+<th>Name</th>
+</tr>
+
+<% if @idea.users_liked.count > 0 %>
+
+    <% @idea.users_liked.each do |l| %>
+         <tr>
+         <td><a href = "/users/<%= l.id %>"><%= l.alias %> </a> </td>
+         <td><%= l.name %> </td>
+        </tr>
+    <%end%>
+<%end%>
+</table>

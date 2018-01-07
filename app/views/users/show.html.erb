@@ -1,0 +1,14 @@
+<div>
+<a href ="/ideas"> Bright Ideas</a>
+<a href ="sessions/:id">Logout</a><br><br>
+
+
+<h1>Name: <%= @user.name %> </h1>
+<h1>Alias: <%= @user.alias %> </h1>
+<h1> Email: <%= @user.email %> </h1>
+
+<br>
+<br>
+
+<p>Total number of posts: <%= @user.ideas.count %> </p>
+<p>total number of likes: <%= @user.ideas_liked.count %> </p>
